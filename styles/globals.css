@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@layer base {
+  body {
+    background-color: #FFF5F8;
+    color: #3a1a28;
+  }
+}
+
+@layer utilities {
+  .logo-blend {
+    mix-blend-mode: screen;
+  }
+}
