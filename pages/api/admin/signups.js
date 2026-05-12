@@ -13,8 +13,8 @@ export default async function handler(req, res) {
 
   try {
     const client = await clientPromise
-    const db = client.db('workshop')
-    const signups = db.collection('signups')
+    const db = client.db()
+    const signups = db.collection('waitlist')
 
     const page = Math.max(1, parseInt(req.query.page) || 1)
     const limit = 50

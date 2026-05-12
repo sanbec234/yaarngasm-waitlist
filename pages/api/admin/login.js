@@ -16,7 +16,7 @@ export default async function handler(req, res) {
 
   try {
     const client = await clientPromise
-    const db = client.db('workshop')
+    const db = client.db()
     const admins = db.collection('admins')
 
     let admin = await admins.findOne({ email: email.toLowerCase().trim() })

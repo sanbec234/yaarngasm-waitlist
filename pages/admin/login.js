@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
-import Image from 'next/image'
+import { Loader2, Lock } from 'lucide-react'
 
 export default function AdminLogin() {
   const router = useRouter()
@@ -41,110 +41,72 @@ export default function AdminLogin() {
   return (
     <>
       <Head>
-        <title>Admin Login — yaarngasm</title>
+        <title>Admin Sign In — Plan</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
       </Head>
 
-      <div
-        className="min-h-screen flex flex-col"
-        style={{ background: 'linear-gradient(160deg, #FFF0F4 0%, #FFE4EC 50%, #FADADD 100%)' }}
-      >
-        {/* Navbar */}
-        <nav className="w-full px-6 py-3 flex items-center" style={{ background: '#E8476F' }}>
-          <a href="/">
-            <Image
-              src="/yaarngasm-logo.png"
-              alt="yaarngasm"
-              width={140}
-              height={50}
-              className="object-contain logo-blend"
-              priority
-            />
-          </a>
-        </nav>
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 w-full max-w-sm">
 
-        {/* Login card */}
-        <main className="flex-1 flex items-center justify-center px-4 py-16">
-          <div className="w-full max-w-sm">
-            <div className="text-center mb-8">
-              <span className="inline-block bg-pink-100 text-pink-600 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wide mb-3">
-                Host Portal
-              </span>
-              <h1 className="text-3xl font-bold text-pink-900">Welcome back</h1>
-              <p className="mt-1 text-pink-500 text-sm">Sign in to manage your workshop</p>
+          {/* Logo + heading */}
+          <div className="flex flex-col items-center gap-2 mb-8">
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-600 to-indigo-600 flex items-center justify-center mb-2 shadow-sm">
+              <Lock className="w-6 h-6 text-white" />
             </div>
-
-            <div
-              className="rounded-3xl p-8 shadow-xl border border-pink-200"
-              style={{ background: 'rgba(255,255,255,0.85)', backdropFilter: 'blur(12px)' }}
-            >
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div>
-                  <label className="block text-sm font-semibold text-pink-800 mb-1.5">Email</label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={form.email}
-                    onChange={handleChange}
-                    required
-                    autoComplete="email"
-                    placeholder="admin@example.com"
-                    className="w-full px-4 py-2.5 bg-pink-50 border border-pink-200 rounded-xl placeholder-pink-300 text-pink-900 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent transition"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-semibold text-pink-800 mb-1.5">Password</label>
-                  <input
-                    type="password"
-                    name="password"
-                    value={form.password}
-                    onChange={handleChange}
-                    required
-                    autoComplete="current-password"
-                    placeholder="••••••••"
-                    className="w-full px-4 py-2.5 bg-pink-50 border border-pink-200 rounded-xl placeholder-pink-300 text-pink-900 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent transition"
-                  />
-                </div>
-
-                {status === 'error' && (
-                  <div className="flex items-center gap-2 text-pink-700 bg-pink-50 border border-pink-300 rounded-xl px-4 py-3 text-sm">
-                    <svg className="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                    </svg>
-                    {errorMsg}
-                  </div>
-                )}
-
-                <button
-                  type="submit"
-                  disabled={status === 'loading'}
-                  className="w-full font-semibold py-3 rounded-xl text-white transition focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed"
-                  style={{
-                    background: status === 'loading'
-                      ? '#F4A0B5'
-                      : 'linear-gradient(135deg, #FF91A4 0%, #E8476F 100%)',
-                  }}
-                >
-                  {status === 'loading' ? (
-                    <span className="flex items-center justify-center gap-2">
-                      <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
-                      </svg>
-                      Signing in...
-                    </span>
-                  ) : (
-                    'Sign In'
-                  )}
-                </button>
-              </form>
-            </div>
-
-            <p className="text-center text-pink-400 text-sm mt-6">
-              <a href="/" className="hover:text-pink-600 transition">← Back to workshop page</a>
-            </p>
+            <h1 className="text-xl font-bold text-gray-900 tracking-tight">Admin Sign In</h1>
+            <p className="text-sm text-gray-500 text-center">Enter your credentials to access the Plan dashboard.</p>
           </div>
-        </main>
+
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1.5">Email</label>
+              <input
+                type="email"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                required
+                autoComplete="email"
+                placeholder="admin@plan.app"
+                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-300 transition-all"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1.5">Password</label>
+              <input
+                type="password"
+                name="password"
+                value={form.password}
+                onChange={handleChange}
+                required
+                autoComplete="current-password"
+                placeholder="••••••••"
+                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-300 transition-all"
+              />
+            </div>
+
+            {status === 'error' && (
+              <p className="text-sm text-red-500">{errorMsg}</p>
+            )}
+
+            <button
+              type="submit"
+              disabled={status === 'loading'}
+              className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2.5 rounded-lg text-sm transition-colors disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            >
+              {status === 'loading' ? (
+                <><Loader2 className="w-4 h-4 animate-spin" />Signing in...</>
+              ) : 'Sign in'}
+            </button>
+          </form>
+
+          <p className="text-center text-sm text-gray-400 mt-6">
+            <a href="/" className="hover:text-gray-600 transition-colors">← Back to Plan</a>
+          </p>
+        </div>
       </div>
     </>
   )
